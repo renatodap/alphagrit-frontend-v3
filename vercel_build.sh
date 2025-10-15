@@ -29,6 +29,9 @@ dart --disable-analytics || true
 echo "[vercel] Pub get..."
 flutter pub get
 
+echo "[vercel] Generating localizations (gen-l10n)..."
+flutter gen-l10n
+
 # Dart defines from Vercel env
 DEFINE_BACKEND="--dart-define=BACKEND_BASE_URL=${BACKEND_BASE_URL:-}"
 DEFINE_SUPA_URL="--dart-define=SUPABASE_URL=${SUPABASE_URL:-}"
