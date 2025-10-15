@@ -8,6 +8,8 @@ FLUTTER_VERSION="3.24.3"
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 FLUTTER_DIR="$ROOT_DIR/flutter"
 export PATH="$FLUTTER_DIR/bin:$PATH"
+export CI=true
+export PUB_CACHE="$ROOT_DIR/.pub-cache"
 
 echo "[vercel] Using Flutter $FLUTTER_VERSION ($FLUTTER_CHANNEL)"
 
@@ -17,8 +19,10 @@ if [ ! -x "$FLUTTER_DIR/bin/flutter" ]; then
   tar -C "$ROOT_DIR" -xJf /tmp/flutter.tar.xz
 fi
 
-flutter --version
+flutter --version || true
+flutter config --no-analytics || true
 flutter config --enable-web
+dart --disable-analytics || true
 
 echo "[vercel] Pub get..."
 flutter pub get
