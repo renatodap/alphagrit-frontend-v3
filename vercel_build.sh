@@ -17,6 +17,8 @@ if [ ! -x "$FLUTTER_DIR/bin/flutter" ]; then
   echo "[vercel] Downloading Flutter SDK..."
   curl -L "https://storage.googleapis.com/flutter_infra_release/releases/$FLUTTER_CHANNEL/linux/flutter_linux_${FLUTTER_VERSION}-${FLUTTER_CHANNEL}.tar.xz" -o /tmp/flutter.tar.xz
   tar -C "$ROOT_DIR" -xJf /tmp/flutter.tar.xz
+  # Allow git operations inside the Flutter SDK path under Vercel root
+  git config --global --add safe.directory "$FLUTTER_DIR" || true
 fi
 
 flutter --version || true
