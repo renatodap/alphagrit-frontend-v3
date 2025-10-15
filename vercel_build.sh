@@ -5,18 +5,17 @@ set -euo pipefail
 FLUTTER_CHANNEL="stable"
 FLUTTER_VERSION="3.24.3"
 
-ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
-FLUTTER_DIR="$ROOT_DIR/.flutter"
+ROOT_DIR="$(cd "$(dirname \"$0\")" && pwd)"
+# Install Flutter directly under "$ROOT_DIR/flutter"
+FLUTTER_DIR="$ROOT_DIR/flutter"
 export PATH="$FLUTTER_DIR/bin:$PATH"
 
 echo "[vercel] Using Flutter $FLUTTER_VERSION ($FLUTTER_CHANNEL)"
 
-if ! command -v flutter >/dev/null 2>&1; then
-  mkdir -p "$FLUTTER_DIR"
+if [ ! -x "$FLUTTER_DIR/bin/flutter" ]; then
   echo "[vercel] Downloading Flutter SDK..."
   curl -L "https://storage.googleapis.com/flutter_infra_release/releases/$FLUTTER_CHANNEL/linux/flutter_linux_${FLUTTER_VERSION}-${FLUTTER_CHANNEL}.tar.xz" -o /tmp/flutter.tar.xz
   tar -C "$ROOT_DIR" -xJf /tmp/flutter.tar.xz
-  mv "$ROOT_DIR/flutter" "$FLUTTER_DIR"
 fi
 
 flutter --version
@@ -35,4 +34,3 @@ flutter build web --release --web-renderer canvaskit \
   $DEFINE_BACKEND $DEFINE_SUPA_URL $DEFINE_SUPA_KEY
 
 echo "[vercel] Build complete → $(pwd)/build/web"
-
