@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:alphagrit/app/theme/theme.dart';
 import 'package:alphagrit/features/ebooks/ebooks_controllers.dart';
+import 'package:alphagrit/features/ebooks/winter_arc_reader.dart';
 
 class EbookDetailScreen extends ConsumerStatefulWidget {
   final String slug;
@@ -29,6 +30,17 @@ class _EbookDetailState extends ConsumerState<EbookDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
+    // Special-case: local Winter Arc ebook (no auth, no backend)
+    if (widget.slug == 'winter-arc') {
+      return Scaffold(
+        appBar: AppBar(title: Text('${t.ebooks.toUpperCase()}: Winter Arc')),
+        body: const Padding(
+          padding: EdgeInsets.all(16),
+          child: WinterArcReader(),
+        ),
+      );
+    }
+
     final state = ref.watch(ebookDetailProvider);
     return Scaffold(
       appBar: AppBar(title: Text('${t.ebooks.toUpperCase()}: ${widget.slug}')),

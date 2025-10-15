@@ -24,9 +24,29 @@ class EbooksListScreen extends ConsumerWidget {
             crossAxisSpacing: 12,
             mainAxisSpacing: 12,
           ),
-          itemCount: items.length,
+          // +1 for the locally bundled Winter Arc ebook
+          itemCount: items.length + 1,
           itemBuilder: (_, i) {
-            final eb = items[i];
+            // First tile: Winter Arc (local, free, no auth)
+            if (i == 0) {
+              return InkWell(
+                onTap: () => context.push('/ebooks/winter-arc'),
+                child: GritCard(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Expanded(child: Placeholder()),
+                      const SizedBox(height: 8),
+                      Text('Winter Arc', maxLines: 2, overflow: TextOverflow.ellipsis),
+                      const SizedBox(height: 4),
+                      Text('Free', style: Theme.of(context).textTheme.bodyLarge),
+                    ],
+                  ),
+                ),
+              );
+            }
+
+            final eb = items[i - 1];
             return InkWell(
               onTap: () => context.push('/ebooks/${eb.slug}'),
               child: GritCard(
