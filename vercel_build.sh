@@ -32,6 +32,12 @@ flutter pub get
 echo "[vercel] Generating localizations (gen-l10n)..."
 flutter gen-l10n
 
+# Debug: show intl constraint and resolved version
+echo "[vercel] pubspec intl constraint:"
+grep -nE '^[[:space:]]*intl:' pubspec.yaml || true
+echo "[vercel] Resolved intl version in dependency tree:"
+flutter pub deps | grep -E '\bintl\b' || true
+
 # Dart defines from Vercel env
 DEFINE_BACKEND="--dart-define=BACKEND_BASE_URL=${BACKEND_BASE_URL:-}"
 DEFINE_SUPA_URL="--dart-define=SUPABASE_URL=${SUPABASE_URL:-}"
