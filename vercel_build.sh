@@ -5,8 +5,7 @@ set -euo pipefail
 FLUTTER_CHANNEL="stable"
 FLUTTER_VERSION="3.24.3"
 
-ROOT_DIR="$(cd "$(dirname \"$0\")" && pwd)"
-# Install Flutter directly under "$ROOT_DIR/flutter"
+ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 FLUTTER_DIR="$ROOT_DIR/flutter"
 export PATH="$FLUTTER_DIR/bin:$PATH"
 
@@ -33,4 +32,4 @@ echo "[vercel] Building Flutter web..."
 flutter build web --release --web-renderer canvaskit \
   $DEFINE_BACKEND $DEFINE_SUPA_URL $DEFINE_SUPA_KEY
 
-echo "[vercel] Build complete → $(pwd)/build/web"
+echo "[vercel] Build complete: $(pwd)/build/web"
