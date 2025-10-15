@@ -1,0 +1,36 @@
+name: flutter-ci
+
+on:
+  push:
+    paths:
+      - '.github/workflows/flutter-ci.yml'
+      - 'lib/**'
+      - 'pubspec.yaml'
+      - 'l10n/**'
+      - 'test/**'
+      - 'integration_test/**'
+  pull_request:
+    paths:
+      - 'lib/**'
+      - 'pubspec.yaml'
+      - 'l10n/**'
+      - 'test/**'
+      - 'integration_test/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: alphagrit
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Flutter pub get
+        run: flutter pub get
+      - name: Analyze
+        run: flutter analyze
+      - name: Test
+        run: flutter test -r expanded
