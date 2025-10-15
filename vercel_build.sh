@@ -26,6 +26,9 @@ flutter config --no-analytics || true
 flutter config --enable-web
 dart --disable-analytics || true
 
+echo "[vercel] Cleaning pub cache and lockfile..."
+rm -f pubspec.lock || true
+rm -rf .dart_tool/pub || true
 echo "[vercel] Pub get..."
 flutter pub get
 
