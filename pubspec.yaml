@@ -26,6 +26,7 @@ dependencies:
   sentry_flutter: ^8.6.0
   shared_preferences: ^2.3.2
   equatable: ^2.0.5
+  timeago: ^3.7.0
 
 dev_dependencies:
   flutter_test:

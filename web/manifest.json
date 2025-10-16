@@ -1,13 +1,15 @@
 {
-    "name": "alphagrit",
-    "short_name": "alphagrit",
-    "start_url": ".",
+    "name": "AlphaGrit - Winter Arc",
+    "short_name": "AlphaGrit",
+    "start_url": "/",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#1A1A1A",
+    "theme_color": "#4A90E2",
+    "description": "Transform winter into your strongest season. 12-week Winter Arc program with brutal training, accountability community, and progress tracking.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
+    "scope": "/",
+    "categories": ["health", "fitness", "lifestyle"],
     "icons": [
         {
             "src": "icons/Icon-192.png",
@@ -30,6 +32,22 @@
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "maskable"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Winter Arc",
+            "short_name": "Winter Arc",
+            "description": "View Winter Arc program",
+            "url": "/winter-arc",
+            "icons": [{"src": "icons/Icon-192.png", "sizes": "192x192"}]
+        },
+        {
+            "name": "Community",
+            "short_name": "Community",
+            "description": "View community posts",
+            "url": "/programs",
+            "icons": [{"src": "icons/Icon-192.png", "sizes": "192x192"}]
         }
     ]
 }
