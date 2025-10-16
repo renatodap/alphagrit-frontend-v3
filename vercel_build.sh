@@ -51,3 +51,4 @@ flutter build web --release --web-renderer canvaskit \
   $DEFINE_BACKEND $DEFINE_SUPA_URL $DEFINE_SUPA_KEY
 
 echo "[vercel] Build complete: $(pwd)/build/web"
+# Build timestamp: 2025-10-16T02:50:58Z
