@@ -33,8 +33,8 @@ class _WinterArcLandingState extends ConsumerState<WinterArcLandingScreen> with 
   late AnimationController _pulseController;
   late Animation<double> _pulseAnimation;
 
-  final DateTime launchDate = DateTime.utc(2024, 11, 17);
-  final DateTime endDate = DateTime.utc(2025, 2, 9, 23, 59, 59);
+  final DateTime launchDate = DateTime.utc(2025, 11, 17);
+  final DateTime endDate = DateTime.utc(2026, 2, 9, 23, 59, 59);
 
   final List<String> winterArcCode = [
     'DISCIPLINE.',
