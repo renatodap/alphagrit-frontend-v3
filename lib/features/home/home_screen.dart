@@ -9,7 +9,18 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(title: Text(t.appTitle.toUpperCase())),
+      appBar: AppBar(
+        title: Text(t.appTitle.toUpperCase()),
+        actions: [
+          TextButton(
+            onPressed: () => context.push('/login'),
+            child: Text(
+              'LOGIN',
+              style: TextStyle(color: GritColors.white, fontWeight: FontWeight.w700),
+            ),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16),
