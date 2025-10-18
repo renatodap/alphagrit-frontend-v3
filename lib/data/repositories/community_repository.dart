@@ -21,10 +21,11 @@ class CommunityRepository {
         .from('posts')
         .stream(primaryKey: ['id'])
         .eq('program_id', programId)
-        .eq('visibility', 'public')
-        .order('created_at', ascending: false)
-        .limit(limit)
-        .map((data) => data.map((json) => CommunityPost.fromJson(json)).toList());
+        .map((data) => data
+            .where((json) => json['visibility'] == 'public')
+            .map((json) => CommunityPost.fromJson(json))
+            .toList()
+            ..sort((a, b) => b.createdAt.compareTo(a.createdAt)));
   }
 
   /// Get a single post with author details
@@ -106,9 +107,10 @@ class CommunityRepository {
         .from('community_comments')
         .stream(primaryKey: ['id'])
         .eq('post_id', postId)
-        .order('created_at', ascending: true)
-        .limit(limit)
-        .map((data) => data.map((json) => CommunityComment.fromJson(json)).toList());
+        .map((data) => data
+            .map((json) => CommunityComment.fromJson(json))
+            .toList()
+            ..sort((a, b) => a.createdAt.compareTo(b.createdAt)));
   }
 
   /// Create a new comment
