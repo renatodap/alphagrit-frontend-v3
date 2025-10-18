@@ -15,6 +15,9 @@ import 'package:alphagrit/features/auth/login_screen.dart';
 import 'package:alphagrit/features/winter_arc/winter_arc_landing.dart';
 import 'package:alphagrit/features/checkout/checkout_success_screen.dart';
 import 'package:alphagrit/features/checkout/checkout_cancel_screen.dart';
+import 'package:alphagrit/features/community/community_feed_screen.dart';
+import 'package:alphagrit/features/community/create_post_screen.dart';
+import 'package:alphagrit/features/community/post_detail_screen.dart';
 
 final router = GoRouter(
   initialLocation: '/',
@@ -40,6 +43,29 @@ final router = GoRouter(
     GoRoute(path: '/admin', builder: (context, state) => const AdminDashboardScreen()),
     GoRoute(path: '/legal/privacy', builder: (context, state) => const PrivacyScreen()),
     GoRoute(path: '/legal/terms', builder: (context, state) => const TermsScreen()),
+    // Community routes
+    GoRoute(
+      path: '/community/feed',
+      builder: (context, state) {
+        final programId = int.parse(state.uri.queryParameters['programId'] ?? '1');
+        final programTitle = state.uri.queryParameters['programTitle'] ?? 'Community';
+        return CommunityFeedScreen(programId: programId, programTitle: programTitle);
+      },
+    ),
+    GoRoute(
+      path: '/community/create-post',
+      builder: (context, state) {
+        final programId = int.parse(state.uri.queryParameters['programId'] ?? '1');
+        return CreatePostScreen(programId: programId);
+      },
+    ),
+    GoRoute(
+      path: '/community/post/:postId',
+      builder: (context, state) {
+        final postId = int.parse(state.pathParameters['postId']!);
+        return PostDetailScreen(postId: postId);
+      },
+    ),
   ],
   errorBuilder: (context, state) => Scaffold(body: Center(child: Text(state.error.toString()))),
 );
