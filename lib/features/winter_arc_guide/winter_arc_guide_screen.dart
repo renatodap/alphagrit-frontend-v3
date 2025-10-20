@@ -246,16 +246,16 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
       backgroundColor: WinterArcTheme.black,
       children: [
         _buildSubsection(
-          'Winter Is Not an Enemy. It's an Invitation.',
+          'Winter Is Not an Enemy. It\'s an Invitation.',
           [
             _buildParagraph(
-              'Winter, for many, is synonymous with retreat, a forced pause, shorter and colder days that invite inertia. It's the season when most people slow down, when New Year's resolutions begin to fade, and motivation seems to hibernate. However, what most see as an obstacle, the true warrior sees as an opportunity.',
+              'Winter, for many, is synonymous with retreat, a forced pause, shorter and colder days that invite inertia. It\'s the season when most people slow down, when New Year\'s resolutions begin to fade, and motivation seems to hibernate. However, what most see as an obstacle, the true warrior sees as an opportunity.',
             ),
             _buildPullQuote(
-              'The cold exposes. It doesn't forgive weaknesses, but, at the same time, it reveals resilience.',
+              'The cold exposes. It doesn\'t forgive weaknesses, but, at the same time, it reveals resilience.',
             ),
             _buildParagraph(
-              'This guide is not just a manual; it's your war plan. It's your strategy to transform winter, traditionally seen as a season of stagnation, into your strongest season. While the outside world shelters from the cold, you will be invited to delve deep into yourself, to rebuild, to strengthen, and to emerge more robust, more focused, and more prepared for the challenges to come.',
+              'This guide is not just a manual; it\'s your war plan. It\'s your strategy to transform winter, traditionally seen as a season of stagnation, into your strongest season. While the outside world shelters from the cold, you will be invited to delve deep into yourself, to rebuild, to strengthen, and to emerge more robust, more focused, and more prepared for the challenges to come.',
             ),
             _buildParagraph(
               'Prepare to accelerate while most slow down. Prepare to use the rigor of winter as the catalyst for your best version. Welcome to the Winter Arc. Your journey begins now.',
@@ -279,10 +279,10 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
           'Why most "die in winter" (mentally and physically)',
           [
             _buildParagraph(
-              'Winter is, metaphorically, a proving ground. Reduced sunlight, lower temperatures, and the body's natural tendency to conserve energy create an environment conducive to lethargy. Most people succumb to this state, not for lack of will, but for lack of a conscious strategy to combat it.',
+              'Winter is, metaphorically, a proving ground. Reduced sunlight, lower temperatures, and the body\'s natural tendency to conserve energy create an environment conducive to lethargy. Most people succumb to this state, not for lack of will, but for lack of a conscious strategy to combat it.',
             ),
             _buildParagraph(
-              'Mentally, the absence of external stimuli and less social interaction can lead to feelings of isolation and demotivation. Physically, the combination of a more caloric diet and decreased physical activity often results in weight gain and loss of fitness. It's a vicious cycle: physical inertia fuels mental apathy, and vice versa.',
+              'Mentally, the absence of external stimuli and less social interaction can lead to feelings of isolation and demotivation. Physically, the combination of a more caloric diet and decreased physical activity often results in weight gain and loss of fitness. It\'s a vicious cycle: physical inertia fuels mental apathy, and vice versa.',
             ),
             _buildPullQuote(
               'To "die in winter" is to allow external circumstances to dictate your internal state, a silent surrender that compromises the potential for growth.',
@@ -321,7 +321,7 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
               'In the constant noise of the modern world, silence is a powerful tool. Dedicating just 10 minutes of your day to absolute silence can have a transformative impact. This is not a complex meditation practice, but an exercise in presence and intention.',
             ),
             _buildParagraph(
-              'Upon waking, before reaching for your phone or getting caught up in the day's hustle, sit in silence. Use this time to connect with your purpose. Ask yourself: "What is my mission for today? What do I need to do to get closer to the person I want to be?"',
+              'Upon waking, before reaching for your phone or getting caught up in the day\'s hustle, sit in silence. Use this time to connect with your purpose. Ask yourself: "What is my mission for today? What do I need to do to get closer to the person I want to be?"',
             ),
           ],
         ),
@@ -362,7 +362,7 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
           'Why the body is the foundation of confidence and leadership',
           [
             _buildParagraph(
-              'Your posture, your energy, and the way you move in the world are direct reflections of your physical condition. A trained body projects confidence. It's not about arrogance, but a quiet assurance that emanates from someone who knows they have control over themselves.',
+              'Your posture, your energy, and the way you move in the world are direct reflections of your physical condition. A trained body projects confidence. It\'s not about arrogance, but a quiet assurance that emanates from someone who knows they have control over themselves.',
             ),
             _buildParagraph(
               'Leadership, in its essence, begins with self-leadership. How can you lead others if you cannot lead yourself out of bed on a cold morning to train? Commitment to physical health and strength demonstrates responsibility, discipline, and a mindset geared towards excellence – qualities that inspire respect and trust in others.',
@@ -375,7 +375,7 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
           [
             _buildBulletList([
               'Extended Dynamic Warm-up: Cold weather increases the risk of injury. Start each workout with 10-15 minutes of dynamic warm-up, including jumping jacks, jump rope, joint rotations, and specific movements for the muscle groups you will be training.',
-              'Train Early in the Day: If possible, train in the morning. This not only ensures the workout is done before the day's excuses accumulate, but also boosts your energy levels and improves your mood for the rest of the day.',
+              'Train Early in the Day: If possible, train in the morning. This not only ensures the workout is done before the day\'s excuses accumulate, but also boosts your energy levels and improves your mood for the rest of the day.',
               'Have a Backup Plan: There will be days when going to the gym or training outdoors is impossible. Have a quick and effective home workout plan that can be performed with minimal equipment.',
               'Focus on Performance: Instead of focusing solely on aesthetics, set performance goals: increase the load, do one more repetition, decrease rest time.',
             ]),
@@ -580,10 +580,10 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
           'Why you gain fat in winter (and how to reverse it)',
           [
             _buildParagraph(
-              'Winter is a challenging season for maintaining body weight. The body's natural tendency is to accumulate fat reserves to protect itself from the cold and to compensate for the historically lower availability of food. Furthermore, decreased sun exposure affects vitamin D production, which is linked to metabolism and mood, and reduced physical activity, combined with increased intake of calorie-rich comfort foods, creates the perfect scenario for fat gain.',
+              'Winter is a challenging season for maintaining body weight. The body\'s natural tendency is to accumulate fat reserves to protect itself from the cold and to compensate for the historically lower availability of food. Furthermore, decreased sun exposure affects vitamin D production, which is linked to metabolism and mood, and reduced physical activity, combined with increased intake of calorie-rich comfort foods, creates the perfect scenario for fat gain.',
             ),
             _buildParagraph(
-              'To reverse this, a conscious and strategic approach is crucial. It's not about deprivation, but about smart choices and optimizing metabolism.',
+              'To reverse this, a conscious and strategic approach is crucial. It\'s not about deprivation, but about smart choices and optimizing metabolism.',
             ),
           ],
         ),
@@ -599,7 +599,7 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
           'Simple strategy for clean and practical eating',
           [
             _buildParagraph(
-              'Clean eating doesn't have to be complicated. The focus should be on whole, minimally processed foods:',
+              'Clean eating doesn\'t have to be complicated. The focus should be on whole, minimally processed foods:',
             ),
             _buildBulletList([
               'Protein Sources: Chicken breast, turkey, fish (salmon, cod), eggs, lean red meat, legumes (lentils, chickpeas), tofu.',
@@ -820,7 +820,7 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
           'Discipline vs. Motivation',
           [
             _buildParagraph(
-              'Motivation is like a spark; it can ignite a fire, but it doesn't keep it burning. Discipline, on the other hand, is the fuel that continuously feeds the flame. Motivation is driven by emotions and external circumstances, making it inconsistent. Discipline is the consistent adherence to a set of rules and habits, regardless of your state of mind.',
+              'Motivation is like a spark; it can ignite a fire, but it doesn\'t keep it burning. Discipline, on the other hand, is the fuel that continuously feeds the flame. Motivation is driven by emotions and external circumstances, making it inconsistent. Discipline is the consistent adherence to a set of rules and habits, regardless of your state of mind.',
             ),
             _buildPullQuote(
               'It is discipline that makes you train when you are tired, study when you would rather rest, or eat healthily when temptation is great.',
@@ -849,7 +849,7 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
               'Wake Up Early: Before sunrise, if possible. This gives you a head start on the day and peaceful time before the world wakes up.',
               'Hydration: Drink a large glass of water with lemon. This rehydrates the body after sleep and stimulates metabolism.',
               'Movement: Do 10-15 minutes of light exercise, such as stretching, yoga, or a few push-ups and squats. This activates the body and mind.',
-              'Silence and Purpose: Dedicate 10 minutes to your mental routine, focusing on your "Winter Mission Statement" and the day's goals.',
+              'Silence and Purpose: Dedicate 10 minutes to your mental routine, focusing on your "Winter Mission Statement" and the day\'s goals.',
               'Nutrition: Eat a protein-rich and nutrient-dense breakfast to fuel your body and mind.',
             ]),
           ],
@@ -1077,7 +1077,7 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
             ),
             const SizedBox(height: WinterArcTheme.spacingM),
             _buildBulletList([
-              'Continue to Practice Voluntary Discomfort: Don't wait for the next winter to challenge yourself. Look for opportunities to step out of your comfort zone.',
+              'Continue to Practice Voluntary Discomfort: Don\'t wait for the next winter to challenge yourself. Look for opportunities to step out of your comfort zone.',
               'Maintain Your Routines: Your morning routine, your workouts, and your clean eating should not be abandoned. Adapt them, if necessary, but maintain the structure that made you strong.',
               'Re-evaluate Your "Mission Statement": As you grow, your goals may evolve. Review your "Winter Mission Statement" and adapt it for the new seasons.',
               'Be an Example: Inspire others with your transformation. Share your journey and the principles that guided you. Leadership begins with example.',
