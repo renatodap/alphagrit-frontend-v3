@@ -406,6 +406,21 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
 
             const SizedBox(height: WinterArcTheme.spacingL),
 
+            // Full example workout details
+            _buildParagraph(
+              'Full Example Workout - Week 1-4:',
+            ),
+            const SizedBox(height: WinterArcTheme.spacingS),
+            _buildBulletList([
+              'Squats: Stand with feet shoulder-width apart, lower your hips back and down as if sitting in a chair, keeping chest up and knees tracking over toes. Return to standing by driving through your heels.',
+              'Push-ups: Start in a plank position with hands slightly wider than shoulder-width. Lower your chest to the ground while keeping your body in a straight line, then push back up. (Modify on knees if needed)',
+              'Plank: Hold a push-up position with forearms on the ground, keeping your body in a straight line from head to heels. Engage your core and don\'t let your hips sag.',
+              'Lunges: Step forward with one leg, lowering your hips until both knees are bent at 90 degrees. Push back to starting position and repeat on the other leg.',
+              'Inverted Row: Use a bar at waist height or TRX straps. Hang underneath with body straight, pull chest to bar, then lower back down with control.',
+            ]),
+
+            const SizedBox(height: WinterArcTheme.spacingL),
+
             _buildTrainingPhase(
               'Week 5–8: Resistance + Load',
               'Train 4 times a week (e.g., Monday, Tuesday, Thursday, Friday). Introduce external load (dumbbells, kettlebells, or backpack with weight).',
@@ -438,6 +453,25 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
               'Mountain Climbers: 30 seconds',
               'Plank: 30 seconds',
             ]),
+          ],
+        ),
+
+        _buildSubsection(
+          'Adapted version for women',
+          [
+            _buildParagraph(
+              'While the fundamental training principles remain the same, women may benefit from additional emphasis on certain movements that address specific biomechanical and aesthetic goals. Add these exercises to your routine 2-3 times per week:',
+            ),
+            const SizedBox(height: WinterArcTheme.spacingM),
+            _buildBulletList([
+              'Hip Abduction: Using resistance bands or cable machine, perform lateral leg raises to target the gluteus medius. 3 sets of 15-20 reps per leg. This helps create hip stability and aesthetic hip shape.',
+              'Unilateral Hip Thrust: Single-leg hip thrusts with shoulders on a bench. This movement maximizes glute activation and addresses any strength imbalances between sides. 3 sets of 10-12 reps per leg.',
+              'Additional Core Work: Women often benefit from extra core training to support posture and functional strength. Add side planks and dead bugs to your routine.',
+            ]),
+            const SizedBox(height: WinterArcTheme.spacingM),
+            _buildParagraph(
+              'Note: These are additions to the main program, not replacements. The core compound movements (squats, push-ups, rows) remain essential for building overall strength and fitness.',
+            ),
           ],
         ),
       ],
@@ -622,6 +656,43 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
             ),
             const SizedBox(height: WinterArcTheme.spacingM),
             _buildFoodSwapTable(),
+          ],
+        ),
+
+        _buildSubsection(
+          'Winter Cut Plan - Example Daily Meal Plan',
+          [
+            _buildParagraph(
+              'For those looking to lose fat while maintaining muscle mass. This example provides approximately 1800-2000 calories with high protein:',
+            ),
+            const SizedBox(height: WinterArcTheme.spacingM),
+            _buildBulletList([
+              'Breakfast: 3 scrambled eggs with spinach + 1 slice whole-wheat toast + black coffee',
+              'Mid-Morning Snack: Greek yogurt (200g) with berries',
+              'Lunch: Grilled chicken breast (150g) + large salad with olive oil dressing + sweet potato (150g)',
+              'Pre-Workout Snack: Apple + handful of almonds',
+              'Post-Workout Dinner: Baked salmon (150g) + steamed broccoli + quinoa (100g cooked)',
+              'Evening Snack (if needed): Protein shake or cottage cheese',
+            ]),
+          ],
+        ),
+
+        _buildSubsection(
+          'Winter Build Plan - Example Daily Meal Plan',
+          [
+            _buildParagraph(
+              'For those looking to build muscle mass and strength. This example provides approximately 2500-2800 calories with emphasis on protein and carbs:',
+            ),
+            const SizedBox(height: WinterArcTheme.spacingM),
+            _buildBulletList([
+              'Breakfast: 4 whole eggs + oatmeal (80g dry) with banana and honey',
+              'Mid-Morning Snack: Protein shake with milk + peanut butter',
+              'Lunch: Lean beef (180g) + brown rice (150g cooked) + mixed vegetables',
+              'Pre-Workout Snack: Rice cakes with almond butter + banana',
+              'Post-Workout: Protein shake + white rice (100g cooked)',
+              'Dinner: Chicken thighs (200g) + sweet potato (200g) + green beans',
+              'Evening Snack: Cottage cheese (200g) + walnuts',
+            ]),
           ],
         ),
 
@@ -831,6 +902,24 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
           ],
         ),
 
+        _buildSubsection(
+          'The 3-Minute Rule - Breaking the Cycle of Inertia',
+          [
+            _buildParagraph(
+              'The hardest part of any task is starting. Once in motion, continuing becomes significantly easier. The 3-Minute Rule is a psychological tool to overcome this initial resistance.',
+            ),
+            _buildParagraph(
+              'The principle is simple: commit to doing any task for just 3 minutes. No matter how unmotivated you feel, tell yourself you only need to do it for 3 minutes. Want to avoid the gym? Go for just 3 minutes. Can\'t start that project? Work on it for just 3 minutes. Don\'t feel like studying? Open the book for just 3 minutes.',
+            ),
+            _buildPullQuote(
+              'What happens after 3 minutes is that inertia is broken. The task no longer seems insurmountable, and you\'ll often find yourself naturally continuing beyond the initial 3 minutes.',
+            ),
+            _buildParagraph(
+              'This rule works because it eliminates the mental barrier of commitment. Three minutes feels manageable, even trivial. But it\'s enough to activate your momentum and shift from a state of inaction to action. Use the timer below to practice this powerful technique.',
+            ),
+          ],
+        ),
+
         const SizedBox(height: WinterArcTheme.spacingXL),
 
         // 3-Minute Timer
@@ -852,6 +941,36 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
               'Silence and Purpose: Dedicate 10 minutes to your mental routine, focusing on your "Winter Mission Statement" and the day\'s goals.',
               'Nutrition: Eat a protein-rich and nutrient-dense breakfast to fuel your body and mind.',
             ]),
+          ],
+        ),
+
+        _buildSubsection(
+          'The 7-Day Monk Mode Challenge',
+          [
+            _buildParagraph(
+              'Monk Mode is a period of extreme focus and discipline, where you eliminate all distractions and dedicate yourself entirely to your most important goals. This 7-day challenge is designed to reset your mind, break bad habits, and accelerate your progress.',
+            ),
+            const SizedBox(height: WinterArcTheme.spacingM),
+            _buildParagraph(
+              'Rules for 7-Day Monk Mode:',
+            ),
+            const SizedBox(height: WinterArcTheme.spacingS),
+            _buildNumberedList([
+              'No Social Media: Delete or disable all social media apps for the entire week. No scrolling, no checking, no exceptions.',
+              'No Entertainment: No TV shows, movies, video games, or casual YouTube browsing. Reading for learning is allowed.',
+              'Minimal Phone Use: Only essential calls and messages. Turn off all non-essential notifications.',
+              'Early to Bed, Early to Rise: Sleep by 10 PM, wake up by 6 AM (or earlier). Consistent sleep schedule is crucial.',
+              'Training Every Day: Some form of physical activity every single day. Even if brief, movement is non-negotiable.',
+              'Clean Eating: No processed foods, no sugar, no alcohol. Only whole foods from your nutrition plan.',
+              'Daily Reflection: Spend 20 minutes each evening journaling - what you accomplished, what you learned, how you felt.',
+            ]),
+            const SizedBox(height: WinterArcTheme.spacingM),
+            _buildPullQuote(
+              'Monk Mode is not about suffering - it\'s about clarity. By removing distractions, you create space for deep focus and meaningful progress.',
+            ),
+            _buildParagraph(
+              'Complete this challenge once during your first month of Winter Arc. You\'ll emerge with renewed mental clarity, broken addictions to instant gratification, and proof that you can control your environment and choices.',
+            ),
           ],
         ),
       ],
@@ -925,6 +1044,25 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
               'Silence: The active search for moments of introspection and reflection, away from noise and distractions. It is where the mind strengthens and wisdom flourishes.',
               'Honor: Living according to your principles, maintaining integrity in all actions. It is respect for yourself and others, even when no one is watching.',
               'Overcoming: The incessant pursuit of going beyond your perceived limits, transforming challenges into opportunities for growth.',
+            ]),
+          ],
+        ),
+
+        _buildSubsection(
+          'How to apply each principle daily',
+          [
+            _buildParagraph(
+              'Understanding the principles is the first step. Living them daily is what creates transformation. Here\'s how to integrate each principle into your everyday life:',
+            ),
+            const SizedBox(height: WinterArcTheme.spacingM),
+            _buildBulletList([
+              'Discipline: Start your day by doing the hardest task first. When your alarm goes off, count down from 5 and immediately get up - no negotiation. This trains your mind that discipline is non-negotiable.',
+              'Clarity: Write down your top 3 priorities each morning. Before making any decision, ask yourself: "Does this align with my Winter Mission?" If not, it\'s a distraction.',
+              'Sacrifice: Identify one comfort you\'ll give up each day. It could be sleeping in, scrolling social media, or eating junk food. Each small sacrifice strengthens your will.',
+              'Consistency: Focus on showing up, even when results aren\'t visible. Miss zero days of your core habits. The power is in the repetition, not the intensity of any single day.',
+              'Silence: Protect 10 minutes of silence each day as fiercely as you\'d protect a meeting with your most important client. No phone, no music, no input - just you and your thoughts.',
+              'Honor: Do the right thing when no one is watching. Put weights back at the gym. Keep your word to yourself before keeping it to others. Honor starts with self-respect.',
+              'Overcoming: Each day, do one thing that scares you or makes you uncomfortable. Call it your "daily dragon" - and slay it before noon.',
             ]),
           ],
         ),
@@ -1003,6 +1141,36 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
                 'Challenge: Overcome a personal limit in training (e.g., do one more repetition, increase weight).',
                 'Expected Results: Visible gains in strength and muscle mass, greater definition, ingrained discipline, enhanced mental resilience.',
               ],
+            ),
+          ],
+        ),
+
+        const SizedBox(height: WinterArcTheme.spacingXXL),
+
+        _buildSubsection(
+          'Day-Closing Rituals - End Your Day Like a Warrior',
+          [
+            _buildParagraph(
+              'How you end your day is just as important as how you start it. A proper day-closing ritual allows you to process the day, celebrate victories, learn from failures, and prepare for tomorrow. This ritual creates a psychological boundary between work and rest, ensuring better sleep and mental clarity.',
+            ),
+            const SizedBox(height: WinterArcTheme.spacingM),
+            _buildParagraph(
+              'The 5-Step Day-Closing Ritual:',
+            ),
+            const SizedBox(height: WinterArcTheme.spacingS),
+            _buildNumberedList([
+              'Review Your Daily Checklist: Go through your Winter Arc checklist. Acknowledge what you accomplished. Don\'t beat yourself up over what you missed - just note it for tomorrow.',
+              'Identify Your Daily Victory: Write down one thing you\'re proud of from today. It doesn\'t have to be big - showing up when you didn\'t feel like it counts. This trains your brain to look for wins.',
+              'Extract One Lesson: What did today teach you? What would you do differently? This isn\'t about dwelling on mistakes - it\'s about continuous improvement. One lesson per day compounds into wisdom.',
+              'Prepare for Tomorrow: Lay out your workout clothes. Prep your breakfast. Write your top 3 priorities. This removes friction and decision fatigue from your morning.',
+              'Digital Sunset: 60 minutes before bed, turn off all screens. Use this time for light reading, stretching, or quiet conversation. This signals your body it\'s time to wind down and dramatically improves sleep quality.',
+            ]),
+            const SizedBox(height: WinterArcTheme.spacingM),
+            _buildPullQuote(
+              'The day-closing ritual is your moment of accountability. It\'s where you face yourself honestly, celebrate progress, and commit to showing up again tomorrow.',
+            ),
+            _buildParagraph(
+              'Consistency with this ritual will transform not just your days, but your entire relationship with time, progress, and self-discipline. Make it sacred.',
             ),
           ],
         ),
