@@ -294,7 +294,7 @@ class _WinterArcGuideScreenState extends State<WinterArcGuideScreen> {
           'The concept of the "Seasonal Warrior"',
           [
             _buildParagraph(
-              'The Seasonal Warrior is one who reverses this logic. Instead of seeing winter as a period of survival, they embrace it as a phase of intense preparation and rebirth. It's an opportunity to focus on what can be controlled: the body, mind, and spirit.',
+              'The Seasonal Warrior is one who reverses this logic. Instead of seeing winter as a period of survival, they embrace it as a phase of intense preparation and rebirth. It\'s an opportunity to focus on what can be controlled: the body, mind, and spirit.',
             ),
             _buildParagraph(
               'While nature sleeps, the Seasonal Warrior awakens. They use isolation for introspection, the cold to test their resilience, and the darkness to ignite their own inner light. This concept is based on the idea that the seasons of greatest difficulty are, in fact, those that offer the greatest potential for transformation.',
