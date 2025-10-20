@@ -22,6 +22,7 @@ import 'package:alphagrit/features/community/post_detail_screen.dart';
 
 final router = GoRouter(
   initialLocation: '/',
+  debugLogDiagnostics: true,
   routes: [
     GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
     GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
