@@ -13,6 +13,7 @@ import 'package:alphagrit/features/legal/privacy_screen.dart';
 import 'package:alphagrit/features/legal/terms_screen.dart';
 import 'package:alphagrit/features/auth/login_screen.dart';
 import 'package:alphagrit/features/winter_arc/winter_arc_landing.dart';
+import 'package:alphagrit/features/winter_arc_guide/winter_arc_guide_screen.dart';
 import 'package:alphagrit/features/checkout/checkout_success_screen.dart';
 import 'package:alphagrit/features/checkout/checkout_cancel_screen.dart';
 import 'package:alphagrit/features/community/community_feed_screen.dart';
@@ -25,6 +26,7 @@ final router = GoRouter(
     GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
     GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
     GoRoute(path: '/winter-arc', builder: (context, state) => const WinterArcLandingScreen()),
+    GoRoute(path: '/winter-arc-guide', builder: (context, state) => const WinterArcGuideScreen()),
     GoRoute(path: '/success', builder: (context, state) => const CheckoutSuccessScreen()),
     GoRoute(path: '/cancel', builder: (context, state) => const CheckoutCancelScreen()),
     GoRoute(path: '/ebooks', builder: (context, state) => const EbooksListScreen()),
