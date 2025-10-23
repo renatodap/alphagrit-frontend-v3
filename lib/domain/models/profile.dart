@@ -9,7 +9,8 @@ class UserProfile {
   final bool? notifyEmailSummaries;
   final bool? notifyReplies;
   final bool? notifyCoachResponses;
-  UserProfile({required this.userId, this.name, this.bio, this.avatarUrl, this.language, this.unitPreference, this.isAdmin, this.notifyEmailSummaries, this.notifyReplies, this.notifyCoachResponses});
+  final String? winterArcTier; // 'standard', 'premium', or null
+  UserProfile({required this.userId, this.name, this.bio, this.avatarUrl, this.language, this.unitPreference, this.isAdmin, this.notifyEmailSummaries, this.notifyReplies, this.notifyCoachResponses, this.winterArcTier});
 
   factory UserProfile.fromJson(Map<String, dynamic> j) => UserProfile(
         userId: (j['user_id'] ?? '') as String,
@@ -22,6 +23,7 @@ class UserProfile {
         notifyEmailSummaries: j['notify_email_summaries'] as bool?,
         notifyReplies: j['notify_replies'] as bool?,
         notifyCoachResponses: j['notify_coach_responses'] as bool?,
+        winterArcTier: j['winter_arc_tier'] as String?,
       );
 
   Map<String, dynamic> toUpdateJson() => {

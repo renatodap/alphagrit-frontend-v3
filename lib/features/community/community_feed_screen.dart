@@ -328,15 +328,44 @@ class _PostCard extends ConsumerWidget {
                       children: [
                         Row(
                           children: [
-                            Text(
-                              post.author?.name?.toUpperCase() ?? 'ANONYMOUS',
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w900,
-                                letterSpacing: 1,
-                                color: Color(0xFFFFFFFF),
+                            Flexible(
+                              child: Text(
+                                post.author?.name?.toUpperCase() ?? 'ANONYMOUS',
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w900,
+                                  letterSpacing: 1,
+                                  color: Color(0xFFFFFFFF),
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
+                            // Premium badge
+                            if (post.author?.winterArcTier == 'premium') ...[
+                              const SizedBox(width: 8),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 6,
+                                  vertical: 2,
+                                ),
+                                decoration: BoxDecoration(
+                                  gradient: const LinearGradient(
+                                    colors: [Color(0xFFFFD700), Color(0xFFFFA500)],
+                                  ),
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                                child: const Text(
+                                  'PREMIUM',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w900,
+                                    letterSpacing: 1,
+                                    color: Color(0xFF000000),
+                                  ),
+                                ),
+                              ),
+                            ],
+                            // Pinned badge
                             if (post.isPinned) ...[
                               const SizedBox(width: 8),
                               Container(

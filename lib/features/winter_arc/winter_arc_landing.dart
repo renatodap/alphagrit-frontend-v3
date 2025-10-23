@@ -211,6 +211,36 @@ class _WinterArcLandingState extends ConsumerState<WinterArcLandingScreen> with 
     });
   }
 
+  Future<void> _handlePremiumCheckout() async {
+    await _checkAuthAndProceed(() async {
+      if (_isLoading) return;
+      setState(() => _isLoading = true);
+      try {
+        // Load ebook data now that we're authenticated
+        await ref.read(ebookDetailProvider.notifier).load('winter-arc');
+        final ebookState = ref.read(ebookDetailProvider);
+        final ebook = ebookState.value;
+        if (ebook != null) {
+          final url = await ref.read(ebookDetailProvider.notifier).checkoutCombo(ebook.id, tier: 'premium');
+          await _openCheckout(url);
+        } else {
+          throw Exception('Winter Arc ebook not found');
+        }
+      } catch (e) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Error: ${e.toString()}'),
+              backgroundColor: GritColors.red,
+            ),
+          );
+        }
+      } finally {
+        if (mounted) setState(() => _isLoading = false);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
@@ -780,6 +810,91 @@ class _WinterArcLandingState extends ConsumerState<WinterArcLandingScreen> with 
                             ],
                           ),
                         ),
+                        const SizedBox(height: 20),
+
+                        // Premium Option (Wagner Guaranteed Responses)
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: WinterArcColors.mutedOrange, width: 3),
+                            boxShadow: [
+                              BoxShadow(
+                                color: WinterArcColors.mutedOrange.withOpacity(0.3),
+                                blurRadius: 30,
+                                spreadRadius: 5,
+                              ),
+                            ],
+                          ),
+                          child: _PricingCard(
+                            title: 'EBOOK + COMMUNITY + WAGNER COACHING',
+                            badge: 'ELITE',
+                            price: '\$197',
+                            description: 'Everything in the bundle PLUS guaranteed personal responses from Wagner on your posts',
+                            features: [
+                              'Everything in Bundle',
+                              'Guaranteed Wagner Responses',
+                              'Priority Support',
+                              'Direct Coaching Access',
+                              'Premium Badge',
+                            ],
+                            onPressed: _isLoading || hasEnded ? null : _handlePremiumCheckout,
+                            buttonLabel: 'GET WAGNER COACHING',
+                            isPrimary: false,
+                            premiumTier: true,
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(top: 12),
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                WinterArcColors.mutedOrange.withOpacity(0.1),
+                                WinterArcColors.darkGray.withOpacity(0.3),
+                              ],
+                            ),
+                            border: Border.all(color: WinterArcColors.mutedOrange.withOpacity(0.3), width: 1),
+                          ),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.workspace_premium, color: WinterArcColors.mutedOrange, size: 20),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    'WAGNER GUARANTEE',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w900,
+                                      letterSpacing: 1,
+                                      color: WinterArcColors.mutedOrange,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                'Wagner personally reviews and responds to all your progress posts',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700,
+                                  color: GritColors.white,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Premium tier members get direct access. Limited spots available.',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: GritColors.grey,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
 
                         if (!hasLaunched)
                           Padding(
@@ -1020,6 +1135,7 @@ class _PricingCard extends StatelessWidget {
   final String buttonLabel;
   final bool isPrimary;
   final Animation<double>? pulseAnimation;
+  final bool premiumTier;
 
   const _PricingCard({
     required this.title,
@@ -1032,6 +1148,7 @@ class _PricingCard extends StatelessWidget {
     required this.buttonLabel,
     required this.isPrimary,
     this.pulseAnimation,
+    this.premiumTier = false,
   });
 
   @override
@@ -1042,12 +1159,18 @@ class _PricingCard extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: isPrimary
-              ? [WinterArcColors.steelBlue.withOpacity(0.3), WinterArcColors.darkGray]
-              : [WinterArcColors.slateGray, WinterArcColors.darkGray],
+          colors: premiumTier
+              ? [WinterArcColors.mutedOrange.withOpacity(0.2), WinterArcColors.darkGray]
+              : isPrimary
+                  ? [WinterArcColors.steelBlue.withOpacity(0.3), WinterArcColors.darkGray]
+                  : [WinterArcColors.slateGray, WinterArcColors.darkGray],
         ),
         border: Border.all(
-          color: isPrimary ? WinterArcColors.frostBlue : GritColors.white.withOpacity(0.2),
+          color: premiumTier
+              ? WinterArcColors.mutedOrange
+              : isPrimary
+                  ? WinterArcColors.frostBlue
+                  : GritColors.white.withOpacity(0.2),
           width: 2,
         ),
       ),
@@ -1132,7 +1255,11 @@ class _PricingCard extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.check_circle,
-                      color: isPrimary ? WinterArcColors.frostBlue : WinterArcColors.mutedOrange,
+                      color: premiumTier
+                          ? WinterArcColors.mutedOrange
+                          : isPrimary
+                              ? WinterArcColors.frostBlue
+                              : WinterArcColors.mutedOrange,
                       size: 20,
                     ),
                     const SizedBox(width: 12),
@@ -1155,11 +1282,19 @@ class _PricingCard extends StatelessWidget {
             height: 56,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: isPrimary ? WinterArcColors.frostBlue : GritColors.red,
-                foregroundColor: isPrimary ? GritColors.black : GritColors.white,
+                backgroundColor: premiumTier
+                    ? WinterArcColors.mutedOrange
+                    : isPrimary
+                        ? WinterArcColors.frostBlue
+                        : GritColors.red,
+                foregroundColor: GritColors.black,
                 shape: const BeveledRectangleBorder(),
-                elevation: isPrimary ? 8 : 4,
-                shadowColor: isPrimary ? WinterArcColors.frostBlue.withOpacity(0.5) : null,
+                elevation: premiumTier || isPrimary ? 8 : 4,
+                shadowColor: premiumTier
+                    ? WinterArcColors.mutedOrange.withOpacity(0.5)
+                    : isPrimary
+                        ? WinterArcColors.frostBlue.withOpacity(0.5)
+                        : null,
               ),
               onPressed: onPressed,
               child: Text(

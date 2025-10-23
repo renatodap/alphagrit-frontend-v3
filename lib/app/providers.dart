@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:alphagrit/infra/api/api_client.dart';
 import 'package:alphagrit/infra/api/waitlist_api.dart';
+import 'package:alphagrit/data/repositories/winter_arc_repository.dart';
+import 'package:alphagrit/data/repositories/admin_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Locale state for i18n toggle; defaults to device locale.
@@ -24,4 +26,18 @@ final apiClientProvider = FutureProvider<ApiClient>((ref) async {
 final waitlistApiProvider = Provider<WaitlistApi>((ref) {
   final dio = ref.watch(apiClientProvider).value!.dio;
   return WaitlistApi(dio);
+});
+
+// Winter Arc Repository
+final winterArcRepositoryProvider = Provider<WinterArcRepository?>((ref) {
+  final apiClient = ref.watch(apiClientProvider).value;
+  if (apiClient == null) return null;
+  return WinterArcRepository(apiClient.dio);
+});
+
+// Admin Repository
+final adminRepositoryProvider = Provider<AdminRepository?>((ref) {
+  final apiClient = ref.watch(apiClientProvider).value;
+  if (apiClient == null) return null;
+  return AdminRepository(apiClient.dio);
 });

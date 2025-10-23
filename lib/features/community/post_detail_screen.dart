@@ -294,13 +294,45 @@ class _PostContent extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        post.author?.name?.toUpperCase() ?? 'ANONYMOUS',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 1,
-                        ),
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              post.author?.name?.toUpperCase() ?? 'ANONYMOUS',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w900,
+                                letterSpacing: 1,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          // Premium badge
+                          if (post.author?.winterArcTier == 'premium') ...[
+                            const SizedBox(width: 8),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 6,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [Color(0xFFFFD700), Color(0xFFFFA500)],
+                                ),
+                                borderRadius: BorderRadius.circular(3),
+                              ),
+                              child: const Text(
+                                'PREMIUM',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w900,
+                                  letterSpacing: 1,
+                                  color: Color(0xFF000000),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ],
                       ),
                       const SizedBox(height: 4),
                       Text(
@@ -454,14 +486,42 @@ class _CommentCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(
-                      comment.author?.name?.toUpperCase() ?? 'ANONYMOUS',
-                      style: const TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w900,
-                        letterSpacing: 0.5,
+                    Flexible(
+                      child: Text(
+                        comment.author?.name?.toUpperCase() ?? 'ANONYMOUS',
+                        style: const TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w900,
+                          letterSpacing: 0.5,
+                        ),
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
+                    // Premium badge for comments
+                    if (comment.author?.winterArcTier == 'premium') ...[
+                      const SizedBox(width: 6),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 4,
+                          vertical: 1,
+                        ),
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFFFFD700), Color(0xFFFFA500)],
+                          ),
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                        child: const Text(
+                          'PREMIUM',
+                          style: TextStyle(
+                            fontSize: 8,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 0.5,
+                            color: Color(0xFF000000),
+                          ),
+                        ),
+                      ),
+                    ],
                     const SizedBox(width: 8),
                     Text(
                       timeago.format(comment.createdAt),

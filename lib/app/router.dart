@@ -9,12 +9,14 @@ import 'package:alphagrit/features/store/store_screen.dart';
 import 'package:alphagrit/features/metrics/metrics_screen.dart';
 import 'package:alphagrit/features/profile/settings_screen.dart';
 import 'package:alphagrit/features/admin/admin_dashboard_screen.dart';
+import 'package:alphagrit/features/admin/winter_arc_admin_screen.dart';
 import 'package:alphagrit/features/legal/privacy_screen.dart';
 import 'package:alphagrit/features/legal/terms_screen.dart';
 import 'package:alphagrit/features/auth/login_screen.dart';
 import 'package:alphagrit/features/winter_arc/winter_arc_landing.dart';
-import 'package:alphagrit/features/winter_arc_guide/winter_arc_guide_screen.dart';
-import 'package:alphagrit/features/winter_arc_guide/winter_arc_guide_pt_screen.dart';
+import 'package:alphagrit/features/winter_arc/winter_arc_community_hub.dart';
+import 'package:alphagrit/features/winter_arc_guide/winter_arc_guide_wrapper.dart';
+import 'package:alphagrit/features/winter_arc_guide/winter_arc_progress_screen.dart';
 import 'package:alphagrit/features/checkout/checkout_success_screen.dart';
 import 'package:alphagrit/features/checkout/checkout_cancel_screen.dart';
 import 'package:alphagrit/features/community/community_feed_screen.dart';
@@ -28,8 +30,9 @@ final router = GoRouter(
     GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
     GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
     GoRoute(path: '/winter-arc', builder: (context, state) => const WinterArcLandingScreen()),
-    GoRoute(path: '/winter-arc-guide', builder: (context, state) => const WinterArcGuideScreen()),
-    GoRoute(path: '/winter-arc-guide-pt', builder: (context, state) => const WinterArcGuidePtScreen()),
+    GoRoute(path: '/winter-arc-guide', builder: (context, state) => const WinterArcGuideWrapper()),
+    GoRoute(path: '/winter-arc-guide-pt', builder: (context, state) => const WinterArcGuideWrapper(isPortuguese: true)),
+    // Note: /winter-arc-progress route requires Riverpod provider wiring - see providers.dart
     GoRoute(path: '/success', builder: (context, state) => const CheckoutSuccessScreen()),
     GoRoute(path: '/cancel', builder: (context, state) => const CheckoutCancelScreen()),
     GoRoute(path: '/ebooks', builder: (context, state) => const EbooksListScreen()),
@@ -46,8 +49,11 @@ final router = GoRouter(
     GoRoute(path: '/metrics', builder: (context, state) => const MetricsScreen()),
     GoRoute(path: '/settings', builder: (context, state) => const SettingsScreen()),
     GoRoute(path: '/admin', builder: (context, state) => const AdminDashboardScreen()),
+    GoRoute(path: '/admin/winter-arc', builder: (context, state) => const WinterArcAdminScreen()),
     GoRoute(path: '/legal/privacy', builder: (context, state) => const PrivacyScreen()),
     GoRoute(path: '/legal/terms', builder: (context, state) => const TermsScreen()),
+    // Winter Arc Community Hub
+    GoRoute(path: '/community/winter-arc', builder: (context, state) => const WinterArcCommunityHub()),
     // Community routes
     GoRoute(
       path: '/community/feed',
