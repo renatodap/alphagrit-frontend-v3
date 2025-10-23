@@ -13,6 +13,10 @@ class WinterArcTheme {
   static const Color white = Color(0xFFFFFFFF);
   static const Color offWhite = Color(0xFFF5F5F5);
 
+  // Additional colors for admin and premium features
+  static const Color mutedOrange = Color(0xFFFF8C42);
+  static const Color bloodRed = Color(0xFFDC143C);
+
   // Gradients
   static const LinearGradient heroGradient = LinearGradient(
     begin: Alignment.topCenter,

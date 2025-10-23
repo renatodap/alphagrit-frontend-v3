@@ -509,15 +509,15 @@ class _WinterArcGuidePtScreenState extends State<WinterArcGuidePtScreen> {
 
           // Exercício table
           if (!isMobile)
-            _buildExercícioTable(exercises)
+            _buildExercicioTable(exercises)
           else
-            _buildExercícioCards(exercises),
+            _buildExercicioCards(exercises),
         ],
       ),
     );
   }
 
-  Widget _buildExercícioTable(List<List<String>> exercises) {
+  Widget _buildExercicioTable(List<List<String>> exercises) {
     return Table(
       border: TableBorder.all(
         color: WinterArcTheme.gray.withOpacity(0.3),
@@ -565,7 +565,7 @@ class _WinterArcGuidePtScreenState extends State<WinterArcGuidePtScreen> {
     );
   }
 
-  Widget _buildExercícioCards(List<List<String>> exercises) {
+  Widget _buildExercicioCards(List<List<String>> exercises) {
     return Column(
       children: exercises.map((exercise) {
         return Container(
@@ -1289,7 +1289,7 @@ class _WinterArcGuidePtScreenState extends State<WinterArcGuidePtScreen> {
             onPressed: () {
               _scrollController.animateTo(
                 0,
-                duration: const Duration(millisegundos: 1000),
+                duration: const Duration(milliseconds: 1000),
                 curve: Curves.easeInOut,
               );
             },
