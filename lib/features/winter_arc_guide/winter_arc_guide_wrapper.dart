@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:alphagrit/data/repositories/winter_arc_repository.dart';
 import 'package:alphagrit/app/providers.dart';
 import 'winter_arc_guide_screen.dart';
@@ -25,30 +26,64 @@ class _WinterArcGuideWrapperState extends ConsumerState<WinterArcGuideWrapper> {
   bool _isLoading = true;
   bool _hasAccess = false;
   String? _error;
+  int _retryCount = 0;
+  static const int _maxRetries = 5;
 
   @override
   void initState() {
     super.initState();
-    // Delay to ensure provider is ready
     Future.microtask(() => _checkAccess());
   }
 
   Future<void> _checkAccess() async {
+    if (!mounted) return;
+
     setState(() {
       _isLoading = true;
       _error = null;
     });
 
     try {
+      // FIRST: Check if user is authenticated with Supabase
+      final session = Supabase.instance.client.auth.currentSession;
+
+      if (session == null) {
+        // Not authenticated → No access, show paywall immediately
+        if (mounted) {
+          setState(() {
+            _hasAccess = false;
+            _isLoading = false;
+          });
+        }
+        return;
+      }
+
+      // SECOND: Check if repository is ready
       final repository = ref.read(winterArcRepositoryProvider);
+
       if (repository == null) {
-        // Repository not ready yet, try again
-        await Future.delayed(const Duration(milliseconds: 500));
+        // Repository not ready yet
+        _retryCount++;
+
+        if (_retryCount > _maxRetries) {
+          // Give up after max retries, show paywall
+          if (mounted) {
+            setState(() {
+              _hasAccess = false;
+              _isLoading = false;
+              _error = 'Failed to initialize. Please refresh the page.';
+            });
+          }
+          return;
+        }
+
+        // Retry with exponential backoff
+        await Future.delayed(Duration(milliseconds: 300 * _retryCount));
         if (mounted) _checkAccess();
         return;
       }
 
-      // Check access
+      // THIRD: Call backend to check access
       final accessData = await repository.checkAccess(1); // program_id = 1 for Winter Arc
       final hasEbookAccess = accessData['has_ebook_access'] as bool? ?? false;
 
@@ -59,7 +94,7 @@ class _WinterArcGuideWrapperState extends ConsumerState<WinterArcGuideWrapper> {
         });
       }
     } catch (e) {
-      // If there's an error (like not authenticated), assume no access
+      // Any error → No access, show paywall
       if (mounted) {
         setState(() {
           _hasAccess = false;

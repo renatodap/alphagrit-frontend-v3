@@ -24,20 +24,34 @@ final apiClientProvider = FutureProvider<ApiClient>((ref) async {
 
 // Simple API wrappers
 final waitlistApiProvider = Provider<WaitlistApi>((ref) {
-  final dio = ref.watch(apiClientProvider).value!.dio;
-  return WaitlistApi(dio);
+  final apiClientAsync = ref.watch(apiClientProvider);
+  return apiClientAsync.when(
+    data: (client) => WaitlistApi(client.dio),
+    loading: () => throw StateError('WaitlistApi not ready yet'),
+    error: (err, stack) => throw err,
+  );
 });
 
-// Winter Arc Repository
+// Winter Arc Repository - Fixed to handle async properly
 final winterArcRepositoryProvider = Provider<WinterArcRepository?>((ref) {
-  final apiClient = ref.watch(apiClientProvider).value;
-  if (apiClient == null) return null;
-  return WinterArcRepository(apiClient.dio);
+  final apiClientAsync = ref.watch(apiClientProvider);
+
+  // Return null if still loading or error, repository if loaded
+  return apiClientAsync.when(
+    data: (client) => WinterArcRepository(client.dio),
+    loading: () => null,  // Still loading, return null
+    error: (err, stack) => null,  // Error, return null
+  );
 });
 
-// Admin Repository
+// Admin Repository - Fixed to handle async properly
 final adminRepositoryProvider = Provider<AdminRepository?>((ref) {
-  final apiClient = ref.watch(apiClientProvider).value;
-  if (apiClient == null) return null;
-  return AdminRepository(apiClient.dio);
+  final apiClientAsync = ref.watch(apiClientProvider);
+
+  // Return null if still loading or error, repository if loaded
+  return apiClientAsync.when(
+    data: (client) => AdminRepository(client.dio),
+    loading: () => null,  // Still loading, return null
+    error: (err, stack) => null,  // Error, return null
+  );
 });
