@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:alphagrit/app/theme/theme.dart';
 import 'package:alphagrit/services/auth_service.dart';
 import 'package:alphagrit/app/providers.dart';
 
 /// Reset password screen - for users who clicked password reset link
+/// Supabase automatically handles the token from the URL and logs the user in
 class ResetPasswordScreen extends ConsumerStatefulWidget {
   const ResetPasswordScreen({super.key});
 
@@ -19,16 +21,40 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
   final _confirmPasswordController = TextEditingController();
 
   bool _isLoading = false;
+  bool _isCheckingAuth = true;
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
   String? _successMessage;
   String? _errorMessage;
 
   @override
+  void initState() {
+    super.initState();
+    _checkAuthentication();
+  }
+
+  @override
   void dispose() {
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
+  }
+
+  /// Check if user is authenticated (they should be after clicking email link)
+  /// Supabase automatically detects the token in the URL and authenticates the user
+  Future<void> _checkAuthentication() async {
+    await Future.delayed(const Duration(milliseconds: 500)); // Give Supabase time to process URL
+
+    if (!mounted) return;
+
+    final user = Supabase.instance.client.auth.currentUser;
+
+    setState(() {
+      _isCheckingAuth = false;
+      if (user == null) {
+        _errorMessage = 'Invalid or expired reset link. Please request a new password reset.';
+      }
+    });
   }
 
   Future<void> _handleSubmit() async {
@@ -101,31 +127,53 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
           child: Center(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(24),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    // Icon
-                    Icon(
-                      Icons.lock_open,
-                      size: 80,
-                      color: const Color(0xFF4A90E2),
-                    ),
-                    const SizedBox(height: 24),
+              child: _isCheckingAuth
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 60,
+                          width: 60,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 4,
+                            valueColor: AlwaysStoppedAnimation(const Color(0xFF4A90E2)),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        Text(
+                          'Verifying reset link...',
+                          style: TextStyle(
+                            color: GritColors.grey,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    )
+                  : Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          // Icon
+                          Icon(
+                            Icons.lock_open,
+                            size: 80,
+                            color: const Color(0xFF4A90E2),
+                          ),
+                          const SizedBox(height: 24),
 
-                    // Description
-                    Text(
-                      'Choose a strong password to protect your account.',
-                      style: TextStyle(
-                        color: GritColors.grey,
-                        fontSize: 16,
-                        height: 1.5,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 32),
+                          // Description
+                          Text(
+                            'Choose a strong password to protect your account.',
+                            style: TextStyle(
+                              color: GritColors.grey,
+                              fontSize: 16,
+                              height: 1.5,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 32),
 
                     // Success message
                     if (_successMessage != null)
@@ -308,7 +356,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                           elevation: 8,
                           disabledBackgroundColor: GritColors.grey,
                         ),
-                        onPressed: _isLoading ? null : _handleSubmit,
+                        onPressed: (_isLoading || Supabase.instance.client.auth.currentUser == null) ? null : _handleSubmit,
                         child: _isLoading
                             ? SizedBox(
                                 height: 24,
