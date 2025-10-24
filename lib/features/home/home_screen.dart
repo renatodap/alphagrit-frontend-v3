@@ -1,17 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:alphagrit/app/theme/theme.dart';
+import 'package:alphagrit/app/providers.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = AppLocalizations.of(context)!;
+    final currentLocale = ref.watch(localeProvider);
+    final isEnglish = currentLocale.languageCode == 'en';
+
     return Scaffold(
       appBar: AppBar(
         title: Text(t.appTitle.toUpperCase()),
         actions: [
+          // Language switcher
+          IconButton(
+            onPressed: () {
+              final newLocale = isEnglish ? const Locale('pt') : const Locale('en');
+              ref.read(localeProvider.notifier).setLocale(newLocale);
+            },
+            tooltip: isEnglish ? 'Mudar para Português' : 'Switch to English',
+            icon: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  isEnglish ? '🇧🇷' : '🇺🇸',
+                  style: const TextStyle(fontSize: 18),
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  isEnglish ? 'PT' : 'EN',
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: GritColors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
           TextButton(
             onPressed: () => context.push('/login'),
             child: Text(

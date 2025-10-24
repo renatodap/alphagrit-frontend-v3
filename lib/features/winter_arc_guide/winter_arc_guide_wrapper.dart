@@ -138,7 +138,11 @@ class _WinterArcGuideWrapperState extends ConsumerState<WinterArcGuideWrapper> {
 
     if (_hasAccess) {
       // User has access - show the guide
-      return widget.isPortuguese
+      // If isPortuguese is explicitly set, use that, otherwise use current locale
+      final locale = ref.watch(localeProvider);
+      final showPortuguese = widget.isPortuguese || locale.languageCode == 'pt';
+
+      return showPortuguese
           ? const WinterArcGuidePtScreen()
           : const WinterArcGuideScreen();
     }

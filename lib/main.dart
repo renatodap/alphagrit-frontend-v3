@@ -14,11 +14,14 @@ class AlphaGritApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final locale = ref.watch(localeProvider);
+
     return MaterialApp.router(
       title: 'AlphaGrit',
       theme: appTheme,
       routerConfig: router,
       debugShowCheckedModeBanner: false,
+      locale: locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
