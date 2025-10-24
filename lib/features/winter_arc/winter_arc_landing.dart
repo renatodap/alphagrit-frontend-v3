@@ -350,7 +350,7 @@ class _WinterArcLandingState extends ConsumerState<WinterArcLandingScreen> with 
 
                             // Main headline
                             Text(
-                              'TURN WINTER INTO\nYOUR STRONGEST SEASON',
+                              t.winterArcHeroTitle,
                               style: TextStyle(
                                 fontFamily: 'BebasNeue',
                                 fontSize: screenWidth > 600 ? 58 : 42,
@@ -372,7 +372,7 @@ class _WinterArcLandingState extends ConsumerState<WinterArcLandingScreen> with 
 
                             // Subheadline
                             Text(
-                              'YOUR WAR PLAN FOR DISCIPLINE, GRIT, AND TRANSFORMATION',
+                              t.winterArcHeroSubtitle,
                               style: TextStyle(
                                 fontSize: screenWidth > 600 ? 16 : 14,
                                 fontWeight: FontWeight.w700,
@@ -391,7 +391,7 @@ class _WinterArcLandingState extends ConsumerState<WinterArcLandingScreen> with 
                                 border: Border.all(color: WinterArcColors.frostBlue, width: 2),
                               ),
                               child: Text(
-                                'NOV 17 → FEB 9, 2025  •  12 WEEKS',
+                                t.winterArcDates,
                                 style: TextStyle(
                                   fontSize: screenWidth > 600 ? 16 : 14,
                                   fontWeight: FontWeight.w800,
@@ -489,25 +489,25 @@ class _WinterArcLandingState extends ConsumerState<WinterArcLandingScreen> with 
                         // Principle cards
                         _PrincipleCard(
                           icon: Icons.shield,
-                          title: 'COMPLETE TRAINING METHODOLOGY',
+                          title: t.winterArcPrincipleTraining,
                           description: t.winterArcBullet1,
                         ),
                         const SizedBox(height: 12),
                         _PrincipleCard(
                           icon: Icons.people_outline,
-                          title: 'PRIVATE ACCOUNTABILITY',
+                          title: t.winterArcPrincipleAccountability,
                           description: t.winterArcBullet2,
                         ),
                         const SizedBox(height: 12),
                         _PrincipleCard(
                           icon: Icons.trending_up,
-                          title: 'DAILY PROGRESS TRACKING',
+                          title: t.winterArcPrincipleTracking,
                           description: t.winterArcBullet3,
                         ),
                         const SizedBox(height: 12),
                         _PrincipleCard(
                           icon: Icons.access_time,
-                          title: 'TIME-LIMITED ACCESS',
+                          title: t.winterArcPrincipleTimeLimited,
                           description: t.winterArcBullet4,
                         ),
                       ],
@@ -530,7 +530,7 @@ class _WinterArcLandingState extends ConsumerState<WinterArcLandingScreen> with 
                             Icon(Icons.menu_book, color: WinterArcColors.mutedOrange, size: 28),
                             const SizedBox(width: 12),
                             Text(
-                              'INSIDE THE EBOOK',
+                              t.winterArcInsideEbook,
                               style: TextStyle(
                                 fontFamily: 'BebasNeue',
                                 fontSize: 28,
@@ -542,17 +542,17 @@ class _WinterArcLandingState extends ConsumerState<WinterArcLandingScreen> with 
                           ],
                         ),
                         const SizedBox(height: 20),
-                        _EbookChapter(number: '1', title: 'THE WINTER ARC PHILOSOPHY', description: 'Understanding discipline, sacrifice, and transformation'),
+                        _EbookChapter(number: '1', title: t.winterArcChapter1Title, description: t.winterArcChapter1Desc),
                         const SizedBox(height: 12),
-                        _EbookChapter(number: '2', title: 'TRAINING METHODOLOGY', description: 'Complete 12-week progressive overload program'),
+                        _EbookChapter(number: '2', title: t.winterArcChapter2Title, description: t.winterArcChapter2Desc),
                         const SizedBox(height: 12),
-                        _EbookChapter(number: '3', title: 'NUTRITION PROTOCOLS', description: 'Cutting, bulking, and maintenance strategies'),
+                        _EbookChapter(number: '3', title: t.winterArcChapter3Title, description: t.winterArcChapter3Desc),
                         const SizedBox(height: 12),
-                        _EbookChapter(number: '4', title: 'RECOVERY & SLEEP', description: 'Optimizing rest for maximum gains'),
+                        _EbookChapter(number: '4', title: t.winterArcChapter4Title, description: t.winterArcChapter4Desc),
                         const SizedBox(height: 12),
-                        _EbookChapter(number: '5', title: 'MENTAL WARFARE', description: 'Building unbreakable discipline and grit'),
+                        _EbookChapter(number: '5', title: t.winterArcChapter5Title, description: t.winterArcChapter5Desc),
                         const SizedBox(height: 12),
-                        _EbookChapter(number: '6', title: 'TRACKING PROGRESS', description: 'Metrics, measurements, and accountability'),
+                        _EbookChapter(number: '6', title: t.winterArcChapter6Title, description: t.winterArcChapter6Desc),
                         const SizedBox(height: 20),
                         Container(
                           padding: const EdgeInsets.all(16),
@@ -566,7 +566,7 @@ class _WinterArcLandingState extends ConsumerState<WinterArcLandingScreen> with 
                               const SizedBox(width: 12),
                               Expanded(
                                 child: Text(
-                                  '120+ pages • Lifetime access • Instant PDF download',
+                                  t.winterArcEbookDetails,
                                   style: TextStyle(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w700,
@@ -617,7 +617,7 @@ class _WinterArcLandingState extends ConsumerState<WinterArcLandingScreen> with 
                               ),
                               const SizedBox(width: 12),
                               Text(
-                                'JOIN 247+ WARRIORS',
+                                t.winterArcJoinWarriors,
                                 style: TextStyle(
                                   fontFamily: 'BebasNeue',
                                   fontSize: 28,
@@ -633,21 +633,21 @@ class _WinterArcLandingState extends ConsumerState<WinterArcLandingScreen> with 
 
                         // Testimonials
                         _TestimonialCard(
-                          quote: 'This program showed me what I\'m capable of. No excuses, just results.',
-                          author: 'MARCUS T.',
-                          metric: 'Lost 18 lbs in 12 weeks',
+                          quote: t.winterArcTestimonial1,
+                          author: t.winterArcTestimonial1Author,
+                          metric: t.winterArcTestimonial1Metric,
                         ),
                         const SizedBox(height: 16),
                         _TestimonialCard(
-                          quote: 'The accountability kept me on track when I wanted to quit. Best investment.',
-                          author: 'SARAH K.',
-                          metric: 'Completed all 84 days',
+                          quote: t.winterArcTestimonial2,
+                          author: t.winterArcTestimonial2Author,
+                          metric: t.winterArcTestimonial2Metric,
                         ),
                         const SizedBox(height: 16),
                         _TestimonialCard(
-                          quote: 'Brutal but effective. This isn\'t for the soft. Worth every dollar.',
-                          author: 'DAVID R.',
-                          metric: 'Gained 12 lbs muscle',
+                          quote: t.winterArcTestimonial3,
+                          author: t.winterArcTestimonial3Author,
+                          metric: t.winterArcTestimonial3Metric,
                         ),
                         const SizedBox(height: 32),
 
@@ -657,9 +657,9 @@ class _WinterArcLandingState extends ConsumerState<WinterArcLandingScreen> with 
                           spacing: 16,
                           runSpacing: 12,
                           children: [
-                            _TrustBadge(icon: Icons.lock, label: 'SECURE CHECKOUT'),
-                            _TrustBadge(icon: Icons.verified_user, label: 'MONEY-BACK GUARANTEE'),
-                            _TrustBadge(icon: Icons.access_time, label: 'INSTANT ACCESS'),
+                            _TrustBadge(icon: Icons.lock, label: t.winterArcTrustSecure),
+                            _TrustBadge(icon: Icons.verified_user, label: t.winterArcTrustGuarantee),
+                            _TrustBadge(icon: Icons.access_time, label: t.winterArcTrustInstant),
                           ],
                         ),
                       ],
