@@ -218,7 +218,7 @@ class _CheckoutSuccessScreenState extends State<CheckoutSuccessScreen>
                                 shape: const BeveledRectangleBorder(),
                                 elevation: 8,
                               ),
-                              onPressed: () => context.go('/ebooks'),
+                              onPressed: () => context.go('/winter-arc-guide'),
                               child: Text(
                                 'ACCESS YOUR EBOOK',
                                 style: TextStyle(
@@ -239,9 +239,9 @@ class _CheckoutSuccessScreenState extends State<CheckoutSuccessScreen>
                                 side: BorderSide(color: GritColors.white.withOpacity(0.3), width: 2),
                                 shape: const BeveledRectangleBorder(),
                               ),
-                              onPressed: () => context.go('/programs'),
+                              onPressed: () => context.go('/community/winter-arc'),
                               child: Text(
-                                'VIEW PROGRAMS',
+                                'ACCESS COMMUNITY',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w700,
