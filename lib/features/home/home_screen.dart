@@ -80,16 +80,6 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
-
-              // Regular Navigation
-              GritButton(label: 'WINTER ARC GUIDE', onPressed: () => context.push('/winter-arc-guide')),
-              const SizedBox(height: 8),
-              GritButton(label: t.ebooks, onPressed: () => context.push('/ebooks')),
-              const SizedBox(height: 8),
-              GritButton(label: t.programs, onPressed: () => context.push('/programs')),
-              const SizedBox(height: 8),
-              GritButton(label: t.store, onPressed: () => context.push('/store')),
             ],
           ),
         ),
