@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:alphagrit/features/home/home_screen.dart';
 import 'package:alphagrit/features/ebooks/ebooks_list_screen.dart';
 import 'package:alphagrit/features/ebooks/ebook_detail_screen.dart';
@@ -8,6 +9,7 @@ import 'package:alphagrit/features/programs/program_detail_screen.dart';
 import 'package:alphagrit/features/store/store_screen.dart';
 import 'package:alphagrit/features/metrics/metrics_screen.dart';
 import 'package:alphagrit/features/profile/settings_screen.dart';
+import 'package:alphagrit/features/profile/my_content_screen.dart';
 import 'package:alphagrit/features/admin/admin_dashboard_screen.dart';
 import 'package:alphagrit/features/admin/winter_arc_admin_screen.dart';
 import 'package:alphagrit/features/legal/privacy_screen.dart';
@@ -55,7 +57,24 @@ final router = GoRouter(
     ),
     GoRoute(path: '/store', builder: (context, state) => const StoreScreen()),
     GoRoute(path: '/metrics', builder: (context, state) => const MetricsScreen()),
-    GoRoute(path: '/settings', builder: (context, state) => const SettingsScreen()),
+    GoRoute(
+      path: '/settings',
+      redirect: (context, state) {
+        final user = Supabase.instance.client.auth.currentUser;
+        if (user == null) return '/login';
+        return null;
+      },
+      builder: (context, state) => const SettingsScreen(),
+    ),
+    GoRoute(
+      path: '/my-content',
+      redirect: (context, state) {
+        final user = Supabase.instance.client.auth.currentUser;
+        if (user == null) return '/login';
+        return null;
+      },
+      builder: (context, state) => const MyContentScreen(),
+    ),
     GoRoute(path: '/admin', builder: (context, state) => const AdminDashboardScreen()),
     GoRoute(path: '/admin/winter-arc', builder: (context, state) => const WinterArcAdminScreen()),
     GoRoute(path: '/legal/privacy', builder: (context, state) => const PrivacyScreen()),

@@ -3,13 +3,18 @@ import 'package:alphagrit/data/repositories/ebooks_repository.dart';
 import 'package:alphagrit/domain/models/ebook.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final ebooksRepoProvider = Provider<EbooksRepository>((ref) {
-  final dio = ref.watch(apiClientProvider).value!.dio;
-  return EbooksRepository(dio);
+final ebooksRepoProvider = Provider<EbooksRepository?>((ref) {
+  final apiClientAsync = ref.watch(apiClientProvider);
+  return apiClientAsync.when(
+    data: (client) => EbooksRepository(client.dio),
+    loading: () => null,
+    error: (err, stack) => null,
+  );
 });
 
 final ebooksListProvider = FutureProvider<List<Ebook>>((ref) async {
   final repo = ref.watch(ebooksRepoProvider);
+  if (repo == null) throw StateError('Ebooks repository not ready');
   return repo.list();
 });
 
@@ -17,7 +22,9 @@ class EbookDetailController extends AutoDisposeAsyncNotifier<Ebook> {
   late final EbooksRepository _repo;
   @override
   Future<Ebook> build() async {
-    _repo = ref.watch(ebooksRepoProvider);
+    final repo = ref.watch(ebooksRepoProvider);
+    if (repo == null) throw StateError('Ebooks repository not ready');
+    _repo = repo;
     // slug must be set via setSlug before use
     throw UnimplementedError('setSlug before use');
   }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:alphagrit/app/theme/theme.dart';
 import 'package:alphagrit/app/providers.dart';
+import 'package:alphagrit/features/navigation/app_navigation.dart';
 import 'package:alphagrit/data/repositories/profile_repository.dart';
-import 'package:alphagrit/app/providers.dart' as providers;
 import 'package:alphagrit/domain/models/profile.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
@@ -24,8 +25,35 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     final t = AppLocalizations.of(context)!;
     final api = ref.watch(apiClientProvider).value;
     final profileRepo = api == null ? null : ProfileRepository(api.dio);
+    final userAsync = ref.watch(currentUserProvider);
+
     return Scaffold(
-      appBar: AppBar(title: Text(t.settings.toUpperCase())),
+      appBar: AuthAwareAppBar(
+        title: t.settings,
+        showBackButton: true,
+      ),
+      bottomNavigationBar: MediaQuery.of(context).size.width < 768
+          ? MobileBottomNav(
+              currentIndex: 2, // Settings/Account is index 2
+              onTap: (index) {
+                userAsync.whenData((user) {
+                  if (user != null) {
+                    switch (index) {
+                      case 0:
+                        context.go('/');
+                        break;
+                      case 1:
+                        context.push('/my-content');
+                        break;
+                      case 2:
+                        // Already on Settings, do nothing
+                        break;
+                    }
+                  }
+                });
+              },
+            )
+          : null,
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -34,9 +62,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               Text(t.language.toUpperCase(), style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 8),
               Row(children: [
-                ElevatedButton(onPressed: () { ref.read(providers.localeProvider.notifier).setLocale(const Locale('en')); if (profileRepo != null) { profileRepo.update(UserProfile(userId: '', language: 'en')); } }, child: const Text('EN')),
+                ElevatedButton(onPressed: () { ref.read(localeProvider.notifier).setLocale(const Locale('en')); if (profileRepo != null) { profileRepo.update(UserProfile(userId: '', language: 'en')); } }, child: const Text('EN')),
                 const SizedBox(width: 8),
-                ElevatedButton(onPressed: () { ref.read(providers.localeProvider.notifier).setLocale(const Locale('pt')); if (profileRepo != null) { profileRepo.update(UserProfile(userId: '', language: 'pt')); } }, child: const Text('PT')),
+                ElevatedButton(onPressed: () { ref.read(localeProvider.notifier).setLocale(const Locale('pt')); if (profileRepo != null) { profileRepo.update(UserProfile(userId: '', language: 'pt')); } }, child: const Text('PT')),
               ]),
             ]),
           ),

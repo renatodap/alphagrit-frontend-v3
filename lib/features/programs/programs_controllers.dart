@@ -3,13 +3,18 @@ import 'package:alphagrit/data/repositories/programs_repository.dart';
 import 'package:alphagrit/domain/models/program.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final programsRepoProvider = Provider<ProgramsRepository>((ref) {
-  final dio = ref.watch(apiClientProvider).value!.dio;
-  return ProgramsRepository(dio);
+final programsRepoProvider = Provider<ProgramsRepository?>((ref) {
+  final apiClientAsync = ref.watch(apiClientProvider);
+  return apiClientAsync.when(
+    data: (client) => ProgramsRepository(client.dio),
+    loading: () => null,
+    error: (err, stack) => null,
+  );
 });
 
 final programsListProvider = FutureProvider<List<Program>>((ref) async {
   final repo = ref.watch(programsRepoProvider);
+  if (repo == null) throw StateError('Programs repository not ready');
   return repo.list();
 });
 
@@ -18,7 +23,9 @@ class ProgramDetailController extends AutoDisposeAsyncNotifier<(Program, List<Po
   int? _programId;
   @override
   Future<(Program, List<PostItem>)> build() async {
-    _repo = ref.watch(programsRepoProvider);
+    final repo = ref.watch(programsRepoProvider);
+    if (repo == null) throw StateError('Programs repository not ready');
+    _repo = repo;
     if (_programId == null) throw UnimplementedError('setProgramId before use');
     final program = await _repo.getProgram(_programId!);
     final posts = await _repo.listPosts(_programId!);
