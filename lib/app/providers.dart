@@ -4,6 +4,8 @@ import 'package:alphagrit/infra/api/api_client.dart';
 import 'package:alphagrit/infra/api/waitlist_api.dart';
 import 'package:alphagrit/data/repositories/winter_arc_repository.dart';
 import 'package:alphagrit/data/repositories/admin_repository.dart';
+import 'package:alphagrit/services/auth_service.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Locale state for i18n toggle; defaults to device locale.
@@ -54,4 +56,14 @@ final adminRepositoryProvider = Provider<AdminRepository?>((ref) {
     loading: () => null,  // Still loading, return null
     error: (err, stack) => null,  // Error, return null
   );
+});
+
+// Auth Service - Provides comprehensive authentication with error handling
+final authServiceProvider = Provider<AuthService>((ref) {
+  return AuthService(Supabase.instance.client);
+});
+
+// Current user provider
+final currentUserProvider = StreamProvider<User?>((ref) {
+  return Supabase.instance.client.auth.onAuthStateChange.map((data) => data.session?.user);
 });

@@ -13,6 +13,9 @@ import 'package:alphagrit/features/admin/winter_arc_admin_screen.dart';
 import 'package:alphagrit/features/legal/privacy_screen.dart';
 import 'package:alphagrit/features/legal/terms_screen.dart';
 import 'package:alphagrit/features/auth/login_screen.dart';
+import 'package:alphagrit/features/auth/login_signup_screen.dart';
+import 'package:alphagrit/features/auth/forgot_password_screen.dart';
+import 'package:alphagrit/features/auth/reset_password_screen.dart';
 import 'package:alphagrit/features/winter_arc/winter_arc_landing.dart';
 import 'package:alphagrit/features/winter_arc/winter_arc_community_hub.dart';
 import 'package:alphagrit/features/winter_arc_guide/winter_arc_guide_wrapper.dart';
@@ -28,7 +31,12 @@ final router = GoRouter(
   debugLogDiagnostics: true,
   routes: [
     GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
-    GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
+    // Auth routes
+    GoRoute(path: '/login', builder: (context, state) => const LoginSignupScreen(isSignup: false)),
+    GoRoute(path: '/signup', builder: (context, state) => const LoginSignupScreen(isSignup: true)),
+    GoRoute(path: '/forgot-password', builder: (context, state) => const ForgotPasswordScreen()),
+    GoRoute(path: '/reset-password', builder: (context, state) => const ResetPasswordScreen()),
+    // Winter Arc routes
     GoRoute(path: '/winter-arc', builder: (context, state) => const WinterArcLandingScreen()),
     GoRoute(path: '/winter-arc-guide', builder: (context, state) => const WinterArcGuideWrapper()),
     GoRoute(path: '/winter-arc-guide-pt', builder: (context, state) => const WinterArcGuideWrapper(isPortuguese: true)),
