@@ -18,7 +18,6 @@ void main() async {
       authOptions: const FlutterAuthClientOptions(
         authFlowType: AuthFlowType.pkce, // Use PKCE for better security
         autoRefreshToken: true, // Auto-refresh expired tokens
-        persistSession: true, // Persist session across app restarts
       ),
     );
   }
