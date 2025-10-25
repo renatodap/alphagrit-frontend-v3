@@ -18,9 +18,12 @@ class LocaleNotifier extends Notifier<Locale> {
 
 final localeProvider = NotifierProvider<LocaleNotifier, Locale>(() => LocaleNotifier());
 
-// ApiClient bound to current locale (for Accept-Language header)
+// ApiClient bound to current locale and auth state
+// Recreates when user logs in/out OR changes language
 final apiClientProvider = FutureProvider<ApiClient>((ref) async {
   final locale = ref.watch(localeProvider);
+  // Watch auth state to recreate client when user logs in/out
+  ref.watch(currentUserProvider);
   return ApiClient.create(locale);
 });
 
